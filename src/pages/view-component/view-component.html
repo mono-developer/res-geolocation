@@ -1,0 +1,28 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>View Restaurant</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-label >Restaurant Name</ion-label>
+      <ion-input placeholder="Text Input" [(ngModel)]="res_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Open Now</ion-label>
+      <ion-select [(ngModel)]="open_now">
+        <ion-option value="true">Active</ion-option>
+        <ion-option value="false">Inactive</ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+     Restaurants List
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-segment [(ngModel)]="switchValue" (ionChange)="changedSwtch()">
+    <ion-segment-button value="map">
+      MAP
+    </ion-segment-button>
+    <ion-segment-button value="viewList">
+      Restaurant List
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="switchValue">
+
+    <ion-list *ngSwitchCase="'map'" class="map__view">
+
+    </ion-list>
+    <ion-list *ngSwitchCase="'viewList'" style="margin-top: 15px;">
+      <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+      <ion-item-sliding *ngFor="let item of this.resData; let i = index;" >
+
+        <ion-item (click)="viewPage(item)">
+          <ion-thumbnail item-start>
+            <img [src]="item.icon">
+          </ion-thumbnail>
+          <h2>{{item.name}}</h2>
+          <p>{{item.opening_hours.open_now ? 'Active' : 'Inactive'}}</p>
+        </ion-item>
+
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="delete(item._id)">delete</button>
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+    </ion-list >
+  </div>
+<div *ngIf="switchValue == 'map'" #map id="map"></div>
+</ion-content>
